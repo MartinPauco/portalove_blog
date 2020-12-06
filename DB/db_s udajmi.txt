@@ -1,0 +1,187 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Hostiteľ: 127.0.0.1
+-- Čas generovania: Ne 06.Dec 2020, 12:04
+-- Verzia serveru: 10.4.14-MariaDB
+-- Verzia PHP: 7.4.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Databáza: `myblog`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(10) NOT NULL,
+  `cat_title` varchar(255) COLLATE utf8_bin NOT NULL,
+  `cat_desc` varchar(255) COLLATE utf8_bin NOT NULL,
+  `cat_date` varchar(255) COLLATE utf8_bin NOT NULL,
+  `cat_edit_date` varchar(255) COLLATE utf8_bin NOT NULL,
+  `cat_status` varchar(10) COLLATE utf8_bin NOT NULL,
+  `cat_priority` varchar(10) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Sťahujem dáta pre tabuľku `categories`
+--
+
+INSERT INTO `categories` (`id`, `cat_title`, `cat_desc`, `cat_date`, `cat_edit_date`, `cat_status`, `cat_priority`) VALUES
+(63, 'Nutrition', 'Nutrition', '24/11/2020', '24/11/2020', '1', '1'),
+(64, 'Lifestyle', 'Lifestyle', '24/11/2020', '24/11/2020', '1', '1'),
+(65, 'Workout', 'Workout', '24/11/2020', '24/11/2020', '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(10) NOT NULL,
+  `postid` int(10) NOT NULL,
+  `comm_autor` varchar(255) COLLATE utf8_bin NOT NULL,
+  `comm_email` varchar(255) COLLATE utf8_bin NOT NULL,
+  `comm_text` text COLLATE utf8_bin NOT NULL,
+  `comm_status` varchar(50) COLLATE utf8_bin NOT NULL,
+  `comm_date` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Sťahujem dáta pre tabuľku `comments`
+--
+
+INSERT INTO `comments` (`id`, `postid`, `comm_autor`, `comm_email`, `comm_text`, `comm_status`, `comm_date`) VALUES
+(36, 37, '25', '211@r.com', 'COmment\r\n', '1', '24/11/2020'),
+(37, 37, 'Autor', 'mail@mail.com', 'test comment', '1', '24/11/2020');
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) NOT NULL,
+  `post_category` varchar(10) COLLATE utf8_bin NOT NULL,
+  `post_title` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_autor` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_date` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_edit_date` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_image` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_text` text COLLATE utf8_bin NOT NULL,
+  `post_tag` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_visit_counter` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_status` varchar(255) COLLATE utf8_bin NOT NULL,
+  `post_priority` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Sťahujem dáta pre tabuľku `posts`
+--
+
+INSERT INTO `posts` (`id`, `post_category`, `post_title`, `post_autor`, `post_date`, `post_edit_date`, `post_image`, `post_text`, `post_tag`, `post_visit_counter`, `post_status`, `post_priority`) VALUES
+(37, '63', 'What to Eat Before a Workout', '25', '24/11/2020', '26/11/2020', 'A-Healthy-Lifestyle.jpg', '<p>What to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a WorkoutWhat to Eat Before a Workout</p>\r\n', 'Nutrition', '16', '1', '1'),
+(38, '64', 'GRAIN-FREE PUMPKIN PECAN PANCAKES', '25', '24/11/2020', '26/11/2020', 'food.jpg', '<p>GRAIN-FREE PUMPKIN PECAN PANCAKES</p>\r\n', '', '1', '1', ''),
+(39, '65', 'How To Build Your Own Workout Routine: Plans, Schedules, and Exercises', '25', '24/11/2020', '26/11/2020', 'java-coffee.jpg', '<p><strong>I get multiple emails and messages per day asking:</strong></p>\r\n\r\n<p><em>&ldquo;Steve, what should I do for a workout?&rdquo;</em></p>\r\n\r\n<p>Well, partner, today is your lucky day.</p>\r\n\r\n<p><strong>I&rsquo;m gonna help build you a custom workout program, step-by-step!&nbsp;</strong></p>\r\n\r\n<p>After all, a workout&nbsp;<em>should</em>&nbsp;be developed around a person&rsquo;s age, goals, nutritional strategy, free time, etc.</p>\r\n\r\n<p>Not only that, but&nbsp;it&rsquo;s easy to overcomplicate this process&nbsp;&ndash; there are an infinite number of exercises, sets, reps, and programs to choose from.</p>\r\n\r\n<p><strong>Now, if you&rsquo;re somebody that wants to skip all of that, and JUST want to be told what exactly to do:&nbsp;</strong></p>\r\n\r\n<p>We build customized workouts for our&nbsp;</p>\r\n', 'Nutrition', '5', '1', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Štruktúra tabuľky pre tabuľku `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `username` varchar(255) COLLATE utf8_bin NOT NULL,
+  `email` varchar(255) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `gender` varchar(10) COLLATE utf8_bin NOT NULL,
+  `image` varchar(255) COLLATE utf8_bin NOT NULL,
+  `status` varchar(10) COLLATE utf8_bin NOT NULL,
+  `type` varchar(10) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Sťahujem dáta pre tabuľku `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `gender`, `image`, `status`, `type`) VALUES
+(25, 'Martin Paučo', 'Martin', 'mail@mail.com', '202cb962ac59075b964b07152d234b70', '2', 'user.png', '1', '1');
+
+--
+-- Kľúče pre exportované tabuľky
+--
+
+--
+-- Indexy pre tabuľku `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pre exportované tabuľky
+--
+
+--
+-- AUTO_INCREMENT pre tabuľku `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT pre tabuľku `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT pre tabuľku `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT pre tabuľku `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
